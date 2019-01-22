@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Attendcy" representedClassName="Attendcy" syncable="YES">
+        <attribute name="present" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="lecture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lecture" inverseName="attendecies" inverseEntity="Lecture" syncable="YES"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="attendcies" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="Homework" representedClassName="Homework" syncable="YES">
+        <attribute name="task" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lecture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lecture" inverseName="homeworks" inverseEntity="Lecture" syncable="YES"/>
+        <relationship name="marks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mark" inverseName="homework" inverseEntity="Mark" syncable="YES"/>
+    </entity>
+    <entity name="Lector" representedClassName="Lector" parentEntity="Person" syncable="YES">
+        <relationship name="lectures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lecture" inverseName="lector" inverseEntity="Lecture" syncable="YES"/>
+    </entity>
+    <entity name="Lecture" representedClassName="Lecture" syncable="YES">
+        <attribute name="theme" attributeType="String" syncable="YES"/>
+        <relationship name="attendecies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attendcy" inverseName="lecture" inverseEntity="Attendcy" syncable="YES"/>
+        <relationship name="homeworks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Homework" inverseName="lecture" inverseEntity="Homework" syncable="YES"/>
+        <relationship name="lector" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lector" inverseName="lectures" inverseEntity="Lector" syncable="YES"/>
+    </entity>
+    <entity name="Mark" representedClassName="Mark" syncable="YES">
+        <attribute name="clarification" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mark" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="homework" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Homework" inverseName="marks" inverseEntity="Homework" syncable="YES"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="marks" inverseEntity="Student" syncable="YES"/>
+    </entity>
+    <entity name="Person" representedClassName="Person" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Student" representedClassName="Student" parentEntity="Person" syncable="YES">
+        <relationship name="attendcies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attendcy" inverseName="student" inverseEntity="Attendcy" syncable="YES"/>
+        <relationship name="marks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mark" inverseName="student" inverseEntity="Mark" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Homework" positionX="78.29296875" positionY="-446.1171875" width="128" height="90"/>
+        <element name="Lector" positionX="547.69921875" positionY="-529.7890625" width="128" height="58"/>
+        <element name="Lecture" positionX="293.46875" positionY="-559.41015625" width="128" height="103"/>
+        <element name="Mark" positionX="278.39453125" positionY="-160.51953125" width="128" height="105"/>
+        <element name="Person" positionX="538.70703125" positionY="-396.3046875" width="128" height="73"/>
+        <element name="Student" positionX="536.015625" positionY="-252.26171875" width="128" height="73"/>
+        <element name="Attendcy" positionX="296.5703125" positionY="-362.484375" width="128" height="88"/>
+    </elements>
+</model>
